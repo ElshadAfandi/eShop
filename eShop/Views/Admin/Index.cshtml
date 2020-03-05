@@ -1,0 +1,516 @@
+﻿
+@{
+    //ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared_Admin/_AdminLayout.cshtml";
+}
+@model List<eShop.Models.General>
+
+@section head{
+    <link href="~/head/eMailsettingtable.css" rel="stylesheet" />
+    }
+
+@*<h2 class="basliq">Ümumi informasiya</h2>*@
+<!--Page header-->
+<div class="row">
+ <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+     <div class="page-header">
+         <h2 class="pageheader-title basliq">Ümumi informasiya  </h2>                              
+     </div>
+  </div>
+</div>
+<!--End page header-->
+<div class="ecommerce-widget">
+
+    <div class="row">
+        <!--Foreach background image-->
+        @foreach (var bg in Model)
+        {
+            if (bg.bgImage != null)
+            {
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body" id="ForRefresh">
+                            <a href="@bg.bgImage" id="BgLink" data-fancybox="gallary">
+                                <img src="@bg.bgImage" id="BgImage" class="card-img" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">Arxa fon rəsmi</h6>
+                            <p class="card-text">Rəsm 2000x1206 ölçüsündə,menu hissəsinə görə şəffaf olsun</p>
+                            <a class="btn btn-primary" id="ImageName" onclick="EditBgIm()" data-target="#exampleModalProduct" data-id="@bg.id" data-toggle="modal">
+                            Rəsmi yenilə
+                            </a>
+                        </div>
+
+                        <div id="sparkline-revenue"></div>
+                    </div>
+                </div>
+                break;
+            }
+            else if (bg.bgImage == null)
+            {
+                continue;
+            }
+
+        }
+        <!--./Foreach background image-->
+
+        <!--Facebook link-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="~/Content/e-commerce/minishop/images/fbBg.png" data-fancybox="gallary">
+                        <img src="~/Content/e-commerce/minishop/images/fbBg.png" class="card-img" />
+                    </a>
+                </div>
+                <div class="card-body" id="cardBodyFb">
+                    <h6 class="card-title">Facebook link</h6>
+                    @if (ViewBag.movcudFb == false)
+                    {
+                        <div id="facebookDiv">
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalProduct" onclick="NewFb()">Yeni</a>
+                        </div>
+                    }
+                    else if (ViewBag.movcudFb == true)
+                    {
+                        foreach (var fb in Model)
+                        {
+                            if (fb.fbLink == null)
+                            {
+                                continue;
+                            }
+                            else if (fb.fbLink != null)
+                            {
+                                <div id="facebookDiv">
+                                    <a class="btn btn-primary" id="LookFb" data-id="@fb.id" data-toggle="modal" data-target="#exampleModalProduct" onclick="ViewFb()">
+                                        Bax
+                                    </a>
+                                    <a class="btn btn-success" data-id="@fb.id" id="fb" onclick="EditFb()" data-target="#exampleModalProduct"
+                                       data-toggle="modal">
+                                        Dəyiş
+                                    </a>
+                                    <a class="btn btn-danger" data-id="@fb.id" id="DeleteFb" onclick="DeleteFb()">Sil</a>
+                                </div>
+                            }
+                        }
+
+                    }
+                    
+                </div>
+
+                <div id="sparkline-revenue"></div>
+            </div>
+        </div>
+
+        <!--./Facebook link-->
+
+        <!--Instagram link-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="~/Content/e-commerce/minishop/images/insBg.jpg" data-fancybox="gallary">
+                        <img src="~/Content/e-commerce/minishop/images/insBg.jpg" class="card-img" />
+                    </a>
+                </div>
+                <div class="card-body" id="cardBodyFb">
+                    <h6 class="card-title">Instagram link</h6>
+                    @if (ViewBag.movcudins == false)
+                    {
+                        <div id="InstagramDiv">
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalProduct" onclick="NewIns()">Yeni</a>
+                        </div>
+                    }
+                    else if (ViewBag.movcudins == true)
+                    {
+                        foreach (var ins in Model)
+                        {
+                            if (ins.insLink == null)
+                            {
+                                continue;
+                            }
+                            else if (ins.insLink != null)
+                            {
+                                <div id="InstagramDiv">
+                                    <a class="btn btn-primary" id="LookIns" data-id="@ins.id" data-toggle="modal" data-target="#exampleModalProduct" onclick="ViewIns()">
+                                        Bax
+                                    </a>
+                                    <a class="btn btn-success" data-id="@ins.id" id="ins" onclick="EditIns()" data-target="#exampleModalProduct"
+                                       data-toggle="modal">
+                                        Dəyiş
+                                    </a>
+                                    <a class="btn btn-danger" data-id="@ins.id" id="DeleteIns" onclick="DeleteIns()">Sil</a>
+                                </div>
+                            }
+                        }
+
+                    }
+
+                </div>
+
+                <div id="sparkline-revenue"></div>
+            </div>
+        </div>
+        <!--./Insttagram link-->
+
+
+
+        <!--WhatsApp link-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="~/Content/e-commerce/minishop/images/swpBg.jpg" data-fancybox="gallary">
+                        <img src="~/Content/e-commerce/minishop/images/swpBg.jpg" class="card-img"/>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">WhatsApp link</h6>
+                    @if (ViewBag.movcudWp == false)
+                    {
+                        <div id="WhatsAppDiv">
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalProduct" onclick="NewWp()">Yeni</a>
+                        </div>
+                    }
+                    else if (ViewBag.movcudWp == true)
+                    {
+                        foreach (var wp in Model)
+                        {
+                            if (wp.wpLink == null)
+                            {
+                                continue;
+                            }
+                            else if (wp.wpLink != null)
+                            {
+                                <div id="WhatsAppDiv">
+                                    <a class="btn btn-primary" id="LookWp" data-id="@wp.id" data-toggle="modal" data-target="#exampleModalProduct" onclick="ViewWp()">
+                                        Bax
+                                    </a>
+                                    <a class="btn btn-success" data-id="@wp.id" id="wp" onclick="EditWp()" data-target="#exampleModalProduct"
+                                       data-toggle="modal">
+                                        Dəyiş
+                                    </a>
+                                    <a class="btn btn-danger" data-id="@wp.id" id="DeleteWp" onclick="DeleteWp()">Sil</a>
+                                </div>
+                            }
+                        }
+
+                    }
+                </div>
+
+                <div id="sparkline-revenue"></div>
+            </div>
+        </div>
+        <!--./WhatsApp link-->
+
+        <!--Address-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="~/Content/e-commerce/minishop/images/adressBg.png" data-fancybox="gallary">
+                        
+                        <img src="~/Content/e-commerce/minishop/images/adressBg.png" class="card-img"/>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Ünvan</h6>
+                    @if (ViewBag.movcudAd == false)
+                    {
+                        <div id="AddressDiv">
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalProduct" onclick="NewAd()">Yeni</a>
+                        </div>
+                    }
+                    else if (ViewBag.movcudAd == true)
+                    {
+                        foreach (var ad in Model)
+                        {
+                            if (ad.address == null)
+                            {
+                                continue;
+                            }
+                            else if (ad.address != null)
+                            {
+                                <div id="AddressDiv">
+                                    <a class="btn btn-primary" id="LookAd" data-id="@ad.id" data-toggle="modal" data-target="#exampleModalProduct" onclick="ViewAd()">
+                                        Bax
+                                    </a>
+                                    <a class="btn btn-success" data-id="@ad.id" id="ad" onclick="EditAd()" data-target="#exampleModalProduct"
+                                       data-toggle="modal">
+                                        Dəyiş
+                                    </a>
+                                    <a class="btn btn-danger" data-id="@ad.id" id="DeleteAd" onclick="DeleteAd()">Sil</a>
+                                </div>
+                            }
+                        }
+
+                    }
+                </div>
+
+
+                <div id="sparkline-revenue"></div>
+            </div>
+        </div>
+        <!--./Address-->
+
+        <!--Phone-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="~/Content/e-commerce/minishop/images/phBg.png" data-fancybox="gallary">
+                        <img src="~/Content/e-commerce/minishop/images/phBg.png" class="card-img"/>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Telefon</h6>
+                    @if (ViewBag.movcudPh == false)
+                    {
+                        <div id="PhoneDiv">
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalProduct" onclick="NewPh()">Yeni</a>
+                        </div>
+                    }
+                    else if (ViewBag.movcudPh == true)
+                    {
+                        foreach (var ph in Model)
+                        {
+                            if (ph.Phone == null)
+                            {
+                                continue;
+                            }
+                            else if (ph.Phone != null)
+                            {
+                                <div id="PhoneDiv">
+                                    <a class="btn btn-primary" id="LookPh" data-id="@ph.id" data-toggle="modal" data-target="#exampleModalProduct" onclick="ViewPh()">
+                                        Bax
+                                    </a>
+                                    <a class="btn btn-success" data-id="@ph.id" id="ph" onclick="EditPh()" data-target="#exampleModalProduct"
+                                       data-toggle="modal">
+                                        Dəyiş
+                                    </a>
+                                    <a class="btn btn-danger" data-id="@ph.id" id="DeletePh" onclick="DeletePh()">Sil</a>
+                                </div>
+                            }
+                        }
+
+                    }
+                </div>
+
+                <div id="sparkline-revenue"></div>
+            </div>
+        </div>
+        <!--./Phone-->
+
+        <!--Footer text-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="~/Content/e-commerce/minishop/images/ftBg.png" data-fancybox="gallary">
+                        <img src="~/Content/e-commerce/minishop/images/ftBg.png" class="card-img" />
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Footer text</h6>
+                    @if (ViewBag.movcudFt == false)
+                    {
+                        <div id="FooterDiv">
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalProduct" onclick="NewFt()">Yeni</a>
+                        </div>
+                    }
+                    else if (ViewBag.movcudFt == true)
+                    {
+                        foreach (var ft in Model)
+                        {
+                            if (ft.FooterText == null)
+                            {
+                                continue;
+                            }
+                            else if (ft.FooterText != null)
+                            {
+                                <div id="FooterDiv">
+                                    <a class="btn btn-primary" id="LookFt" data-id="@ft.id" data-toggle="modal" data-target="#exampleModalProduct" onclick="ViewFt()">
+                                        Bax
+                                    </a>
+                                    <a class="btn btn-success" data-id="@ft.id" id="ft" onclick="EditFt()" data-target="#exampleModalProduct"
+                                       data-toggle="modal">
+                                        Dəyiş
+                                    </a>
+                                    <a class="btn btn-danger" data-id="@ft.id" id="DeleteFt" onclick="DeleteFt()">Sil</a>
+                                </div>
+                            }
+                        }
+
+                    }
+                </div>
+
+                <div id="sparkline-revenue"></div>
+            </div>
+        </div>
+        <!--./Footer text-->
+
+        <!--Email settings-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="~/Content/e-commerce/minishop/images/mailBg.png" data-fancybox="gallary">
+                        <img src="~/Content/e-commerce/minishop/images/mailBg.png" class="card-img" />
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Email settings</h6>
+                    @if (ViewBag.movcudM == false)
+                    {
+                        <div id="EmailDiv">
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalProduct" onclick="NewM()">Yeni</a>
+                        </div>
+                    }
+                    else if (ViewBag.movcudM == true)
+                    {
+                        foreach (var em in ViewBag.EmailSet)
+                        {
+                            if (em.eMail == null)
+                            {
+                                continue;
+                            }
+                            else if (em.eMail != null)
+                            {
+                                <div id="EmailDiv">
+                                    <a class="btn btn-primary" id="LookM" data-id="@em.id" data-toggle="modal" data-target="#exampleModalProduct" onclick="ViewM()">
+                                        Bax
+                                    </a>
+                                    <a class="btn btn-success" data-id="@em.id" id="m" onclick="EditM()" data-target="#exampleModalProduct"
+                                       data-toggle="modal">
+                                        Dəyiş
+                                    </a>
+                                    <a class="btn btn-danger" data-id="@em.id" id="DeleteM" onclick="DeleteM()">Sil</a>
+                                </div>
+                            }
+                        }
+
+                    }
+                </div>
+
+            </div>
+        </div>
+        <!--./Email settings-->
+
+        <!--Site name-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="~/Content/e-commerce/minishop/images/snBg.png" data-fancybox="gallary">
+                        <img src="~/Content/e-commerce/minishop/images/snBg.png" class="card-img" />
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title"></h6>
+                    @if (ViewBag.movcudSn == false)
+                    {
+                        <div id="NameDiv">
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalProduct" onclick="NewSn()">Yeni</a>
+                        </div>
+                    }
+                    else if (ViewBag.movcudSn == true)
+                    {
+                        foreach (var sn in Model)
+                        {
+                            if (sn.MailName == null)
+                            {
+                                continue;
+                            }
+                            else if (sn.MailName != null)
+                            {
+                                <div id="NameDiv">
+                                    <a class="btn btn-primary" id="LookSn" data-id="@sn.id" data-toggle="modal" data-target="#exampleModalProduct" onclick="ViewSn()">
+                                        Bax
+                                    </a>
+                                    <a class="btn btn-success" data-id="@sn.id" id="sn" onclick="EditSn()" data-target="#exampleModalProduct"
+                                       data-toggle="modal">
+                                        Dəyiş
+                                    </a>
+                                    <a class="btn btn-danger" data-id="@sn.id" id="DeleteSn" onclick="DeleteSn()">Sil</a>
+                                </div>
+                            }
+                        }
+
+                    }
+
+                </div>
+
+                <div id="sparkline-revenue"></div>
+            </div>
+        </div>
+        <!--./Site name-->
+
+        <!--Google map-->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="~/Content/e-commerce/minishop/images/gmBg.jpg" data-fancybox="gallary">
+                            <img src="~/Content/e-commerce/minishop/images/gmBg.jpg" class="card-img" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Google</h6>
+                        @if (ViewBag.movcudGm == false)
+                    {
+                    <div id="GoogleDiv">
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalProduct" onclick="NewGm()">Yeni</a>
+                    </div>
+                    }
+                    else if (ViewBag.movcudGm == true)
+                    {
+                        foreach (var gm in Model)
+                        {
+                            if (gm.mapApiKey == null)
+                            {
+                                continue;
+                            }
+                            else if (gm.mapApiKey != null)
+                            {
+                    <div id="GoogleDiv">
+
+                        <a class="btn btn-success" data-id="@gm.id" id="gm" onclick="EditGm()" data-target="#exampleModalProduct"
+                           data-toggle="modal">
+                            Dəyiş
+                        </a>
+                        <a class="btn btn-danger" data-id="@gm.id" id="DeleteGm" onclick="DeleteGm()">Sil</a>
+                    </div>
+                            }
+                        }
+
+                    }
+                    </div>
+
+                    <div id="sparkline-revenue"></div>
+                </div>
+            </div>
+        <!--./Google map-->
+
+      
+
+        </div>
+ </div>
+<!------------------------------------------------ Modal --------------------------------------------------------------------->
+<div class="modal fade" id="exampleModalProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Məlumatları doldurun</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="bodyProduct">
+                .....
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@ <!--Ajax-nan vermek-->
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------------./Modal -------------------------------------------------------------------->
+
+
+
+ @section scripts{
+    <script src="~/scripts/AdminIndex.js"></script>
+ }

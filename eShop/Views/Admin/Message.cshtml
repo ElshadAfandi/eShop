@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Message";
+    Layout = "~/Views/Shared_Admin/_AdminLayout.cshtml";
+}
+
+@model List<eShop.Models.Message>
+
+<h2 class="basliq">Şikayət və təkliflər</h2>
+<br /><br />
+<div class="table table-responsive">
+    <table class="table table-hover" id="exampleMessage">
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Ad və soyad</th>
+                <th>Telefon</th>
+                <th>Email</th>
+                <th>Başlıq</th>
+                <th>Məktub</th>
+                <th>Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ms in Model)
+            {
+                <tr>
+                    <td>@ms.id</td>
+                    <td>@ms.Name</td>
+                    <td>@ms.Phone</td>
+                    <td>
+                        @if (ms.Email != null)
+                        {
+                            <span>@ms.Email</span>
+                        }
+                        else
+                        {
+                            <span>Email yoxdur</span>
+                        }
+                    </td>
+                    
+                    <td>
+                        @if (ms.Subject != null)
+                        {
+                            <span>@ms.Subject</span>
+                        }
+                        else
+                        {
+                            <span>Başlıq yoxdur</span>
+                        }
+                    </td>
+                    <td><a class="btn btn-info viewMs" data-id="@ms.id" data-toggle="modal" data-target="#exampleModalMessage">Məktuba bax</a></td>
+                    <td><a class="btn btn-danger deleteMs" data-id="@ms.id">Sil</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!------------------------------------------------ Modal --------------------------------------------------------------------->
+<div class="modal fade" id="exampleModalMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Məktub</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="body">
+                .....
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@ <!--Ajax-nan vermek-->
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------------./Modal -------------------------------------------------------------------->
+
+
+@section scripts{
+    <script src="~/scripts/AdminMessagePage.js"></script>    
+    }

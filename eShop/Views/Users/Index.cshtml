@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared_Admin/_AdminLayout.cshtml";
+}
+
+@model List<eShop.Models.aspnet_Membership>
+
+<h2 class="basliq">İstifadəçilər</h2>
+<br />
+<div>
+<div >
+    <a class="btn btn-success" onclick="NewUser()" data-target="#exampleModalProduct" data-toggle="modal">Yeni istifadəçi</a> &nbsp;
+</div><br />
+<div style="float:left;">
+    <a class="btn btn-success" onclick="NewRol()" data-target="#exampleModalProduct" data-toggle="modal">Yeni rol</a>&nbsp;
+</div>
+<div style="float:left;">
+    <a class="btn btn-success" onclick="ViewRol()" data-target="#exampleModalProduct" data-toggle="modal">Mövcud rollar bax</a>
+</div>
+</div>
+
+<br /><br /><br />
+<div class="table table-responsive">
+    <table class="table table-hover" id="example">
+        <thead>
+            <tr>
+                <th>Soyad</th>
+                <th>Ad</th>
+                <th>Təvvəlüd</th>
+                <th>E-mail</th>
+                <th>Telefon</th>
+                <th>Rol</th>
+                <th>Sonuncu login olma vaxtı</th>
+                <th>Create date</th>             
+                <th>Dəyiş</th>   
+                <th>Sil</th>
+                <th>Parolu dəyiş</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            @foreach (var us in Model)
+            {
+                <tr>
+                    <td>@us.User.LastName</td>
+                    <td>@us.User.FirstName</td>
+                    <td>@us.User.Brithday.ToString("dd/MM/yyyy")</td>
+                    <td>@us.Email</td>
+                    <td>@us.User.Phone</td>
+                    <td><a class="btn btn-info UserRoleView" data-id="@us.UserId" data-target="#exampleModalProduct" data-toggle="modal">
+                        Rollarına bax
+                        </a>
+                    </td>
+                    <td>@us.aspnet_Users.LastActivityDate.ToLocalTime()</td>
+                    <td>@us.CreateDate.ToLocalTime()</td>
+                    <td>
+                    <a class="btn btn-success btnedituser" data-id="@us.UserId" data-target="#exampleModalProduct"data-toggle="modal">Edit</a>
+                    </td>
+                    <td><a class="btn btn-danger btnUserDel" data-id="@us.UserId">Delete</a></td>
+                    <td><a class="btn btn-warning btnchangepassw" data-id="@us.UserId"data-target="#exampleModalProduct"data-toggle="modal" >Reset password</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<!-----------------------------------------------Modal----------------------------------------------------->
+<div class="modal fade" id="exampleModalProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Məlumatları doldurun</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="body">
+                .....
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@ <!--Ajax-nan vermek-->
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------------End Modal------------------------------------------------>
+
+
+@section scripts{
+    <script src="~/scripts/Users.js"></script>
+}

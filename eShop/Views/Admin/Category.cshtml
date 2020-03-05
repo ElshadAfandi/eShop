@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared_Admin/_AdminLayout.cshtml";
+}
+
+@model List<eShop.Models.category>
+
+<h2 class="basliq">Kateqoriyalar</h2>
+<br />
+
+@*@Html.ActionLink("Yeni kateqoriya əlavə et","NewCategory")*@
+<a  onclick="NewCategory()" class="btn btn-success" data-target="#exampleModalProduct" data-toggle="modal">Yeni kateqoriya əlavə et</a>
+<br /><br />
+<div class="table table-responsive">
+    <table class="table table-hover" id="example">
+        <thead>
+            <tr>
+                <th>Kateqoriya</th>
+                <th>Açıqlama</th>
+                <th>Rəsm</th>
+                <th>Dəyiş</th>
+                <th>Sil</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td>@category.CategoryName</td>
+                    <td>
+                        @if (category.description == " " || category.description=="")
+                        {
+                            <span data-toggle="tooltip" data-placement="bottom" data-original-title="Açıqlama yoxdur">
+                                <img src="~/Content/Admin/Resm/icon/error.ico" />
+                            </span>
+                        }
+                        else
+                        {
+                            @category.description
+                        }
+                    </td>
+                    <td>
+                        @foreach (var img in category.Images)
+                        {
+                            <a class="btn" data-target="#exampleModalProduct" data-toggle="modal" data-id="@img.id" id="imgUpdate">
+                                <i class="m-r-10 mdi mdi-autorenew" data-toggle="tooltip" data-placement="right" title="Şəkli yenilə"></i>
+                            </a>
+                            <a data-fancybox="gallary" href="@img.CategoryImage"><img src="@img.CategoryImage" style="width:50px;height:50px;" /></a>
+                            
+                        }
+                    </td>
+                    
+                    <td><a data-id="@category.id"  class="btn btn-success btnEdit" data-target="#exampleModalProduct" data-toggle="modal">Edit</a></td>
+                    <td><a data-id="@category.id" class="btn btn-danger btnCatDelete">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="exampleModalProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Məlumatları doldurun</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="body">
+                .....
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@ <!--Ajax-nan vermek-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/scripts/CategoryScripts.js"></script>
+    }

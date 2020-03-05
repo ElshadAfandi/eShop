@@ -1,0 +1,28 @@
+﻿@model List<eShop.Models.aspnet_Membership>
+
+
+    @foreach (var us in Model)
+            {
+        <tr>
+            <td>@us.User.LastName</td>
+            <td>@us.User.FirstName</td>
+            <td>@us.User.Brithday.ToString("dd/MM/yyyy")</td>
+            <td>@us.Email</td>
+            <td>@us.User.Phone</td>
+            <td>
+                <a class="btn btn-info UserRoleView" data-id="@us.UserId" data-target="#exampleModalProduct" data-toggle="modal">
+                    Rollarına bax
+                </a>
+            </td>
+            <td>@us.aspnet_Users.LastActivityDate.ToLocalTime()</td>
+            <td>@us.CreateDate.ToLocalTime()</td>
+            <td>
+                <a class="btn btn-success btnedituser" data-id="@us.UserId" data-target="#exampleModalProduct" data-toggle="modal">Edit</a>
+            </td>
+            <td><a class="btn btn-danger btnUserDel" data-id="@us.UserId">Delete</a></td>
+            <td><a class="btn btn-warning btnchangepassw" data-id="@us.UserId" data-target="#exampleModalProduct" data-toggle="modal">Changed password</a></td>
+        </tr>
+    }
+
+
+

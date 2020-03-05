@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Sifarişlər";
+    Layout = "~/Views/Shared_Admin/_AdminLayout.cshtml";
+}
+
+@model List<eShop.Models.Order>
+
+
+<h2 class="basliq">Sifarişlər</h2>
+<br />
+@*<a onclick="NewOrder()" class="btn btn-success" data-target="#exampleModalProduct" data-toggle="modal">Yeni sifariş</a>*@
+<br /><br />
+<div class="table table-responsive">
+    <table class="table table-hover" id="exampleOrder">
+        <thead>
+            <tr>
+                <th>Sifariş nömrəsi</th>
+                <th>Soyad və adı</th>
+                <th>Telefon</th>
+                <th>Email</th>
+                <th>Məhsulun kodu</th>
+                <th>Məhsulun ölçüsü</th>
+                <th>Sifarişin verilmə zamanı</th>
+                <th>Status</th>
+                <th>Dəyiş</th>
+                <th>Sil</th>
+            </tr>            
+        </thead>
+        <tbody id="tbody">
+            @foreach (var or in Model)
+            {
+                <tr>
+                    <td>@or.id</td>
+                    <td>@or.LastName &nbsp; @or.FirstName</td>
+                    <td>@or.Phone</td>
+                    <td>@or.Email</td>
+                    <td>@or.product.ProductCode</td>
+                    <td>@or.size</td>
+                    <td>@or.OrderCreationDate</td>
+                    <td>
+                        @if (or.status == false)
+                        {
+                            <span>Yerinə yetirilməyib</span>
+                            <a class="btn btnorderconf" data-toggle="tooltip" data-original-title="Sifarişin yerinə yetirilməyin təsdiqlə"
+                                data-placement="right" data-id="@or.id">
+                        <i class="fas fa-edit"></i></a>
+                        }
+                        else if (or.status == true)
+                        {
+                            <span style="color:red;">Yerinə yetirilib</span>
+                        }
+                    </td>
+                    <td>
+                        @if (or.status == false)
+                        {
+                            <a class="btn btn-success edtorder" data-toggle="modal" data-target="#exampleModalProduct" data-id="@or.id">
+                                Dəyiş
+                            </a>
+                        }
+                        else if(or.status==true)
+                        {
+                            <a class="btn btn-success disabled">Dəyiş</a>
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btnDelOr" data-id="@or.id">
+                            Sil
+                        </a>
+                    </td>
+                </tr>
+            }
+           
+        </tbody>
+    </table>
+</div>
+
+
+
+
+<!-----------------------------------------------Modal----------------------------------------------------->
+<div class="modal fade" id="exampleModalProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Məlumatları doldurun</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="body">
+                .....
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@ <!--Ajax-nan vermek-->
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------------End Modal------------------------------------------------>
+
+@section scripts{
+    <script src="~/scripts/order.js"></script>
+    }

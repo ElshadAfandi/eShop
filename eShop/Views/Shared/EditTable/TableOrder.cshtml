@@ -1,0 +1,50 @@
+﻿@model List<eShop.Models.Order>
+
+
+    @foreach (var or in Model)
+            {
+        <tr>
+            <td>@or.id</td>
+            <td>@or.LastName &nbsp; @or.FirstName</td>
+            <td>@or.Phone</td>
+            <td>@or.Email</td>
+            <td>@or.product.ProductCode</td>
+            <td>@or.size</td>
+            <td>@or.OrderCreationDate</td>
+            <td>
+                @if (or.status == false)
+                {
+                    <span>Yerinə yetirilməyib</span>
+                            <a class="btn btnorderconf" data-toggle="tooltip" data-original-title="Sifarişin yerinə yetirilməyin təsdiqlə"
+                               data-placement="right" data-id="@or.id">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                }
+                else if (or.status == true)
+                {
+                    <span style="color:red;">Yerinə yetirilib</span>
+                }
+            </td>
+            @*<i class="fas fa-edit"></i>*@
+            <td>
+                @if (or.status == false)
+                {
+                    <a class="btn btn-success edtorder" data-toggle="modal" data-target="#exampleModalProduct" data-id="@or.id">
+                        Dəyiş
+                    </a>
+                }
+                else if (or.status == true)
+                {
+                    <a class="btn btn-success disabled">Dəyiş</a>
+                }
+            </td>
+            <td>
+                <a class="btn btn-danger" data-id="@or.id">
+                    Sil
+                </a>
+            </td>
+        </tr>
+    }
+
+
+

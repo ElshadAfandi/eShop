@@ -1,0 +1,173 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_CommerceLayout/_CommerceLayout.cshtml";
+}
+
+@model List<eShop.Models.General>
+
+
+
+<section class="ftco-section contact-section bg-light">
+                    <div class="container">
+                        <div class="row d-flex mb-5 contact-info">
+                            <div class="w-100"></div>
+                            <div class="col-md-3 d-flex">
+                                <div class="info bg-white p-4">
+                                    @foreach (var adr in Model)
+                                    {
+                                        if (adr.address == null)
+                                        {
+                                            continue;
+                                        }
+                                        else if (adr.address != null)
+                                        {
+                                            <p><span>Ünvan:</span>@adr.address</p>
+                                            break;
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-3 d-flex">
+                                <div class="info bg-white p-4">
+                                    @foreach (var tel in Model)
+                                    {
+                                        if (tel.Phone == null)
+                                        {
+                                            continue;
+                                        }
+                                        else if (tel.Phone != null)
+                                        {
+                                            <p><span>Telefon:</span> <a href="tel:@tel.Phone">@tel.Phone</a></p>
+                                            break;
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-3 d-flex">
+                                <div class="info bg-white p-4">
+                                    @foreach (var em in ViewBag.Mail)
+                                    {
+                                        if (em.eMail == null)
+                                        {
+                                            continue;
+                                        }
+                                        else if (em.eMail != null)
+                                        {
+                                            <p><span>Email:</span> <a href="mailto:@em.eMail">@em.eMail</a></p>
+                                            break;
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row block-9">
+        <div class="col-md-6 order-md-last d-flex">
+           <form action="#" class="bg-white p-5 contact-form" id="form">
+              <div class="form-group">
+                <input type="text" id="Name" class="form-control" placeholder="Adınız və soyadınız (*)" required>
+               </div>
+               <div class="form-group">
+                 <input type="text" id="Email" class="form-control" placeholder="Email ünvanınız">
+               </div>
+               <div class="form-group">
+                   <input type="text" id="Phone" class="form-control" placeholder="Telefon nömrəniz(*)" required>
+               </div>
+               <div class="form-group">
+                 <input type="text" id="Subject" class="form-control" placeholder="Başlıq">
+               </div>
+               <div class="form-group">
+                 <textarea name="" id="Message" cols="30" rows="7" class="form-control" placeholder="Mesaj(*)" required></textarea>
+               </div>
+               <div class="form-group">
+                <input type="button" value="Göndər" onclick="Send()" class="btn btn-primary py-3 px-5">
+             </div>
+           </form>
+        </div>
+        <div class="col-md-6 d-flex">
+         <div id="map" class="bg-white" style="position: relative; overflow: hidden;">
+             @foreach (var map in Model)
+             {
+                 if (map.mapApiKey == null)
+                 {
+                     continue;
+                 }
+                 else if (map.mapApiKey != null)
+                 {
+                    <iframe src="@map.mapApiKey"
+                     width="540" height="520" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                 }
+             }
+            
+        </div>
+       </div>
+     </div>
+   </div>
+</section>
+                
+      
+
+
+<!--Message icon-->
+<a data-toggle="modal" data-target="#exampleModal">
+    <img src="~/Content/e-commerce/minishop/icon/ms.gif" id="back-to-top-message" class="back-to-top-message" style="display: inline;" />
+</a>
+<!--Message icon-->
+
+<!-----------------------------------Modal----------------------------------------------------------->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Şikayət və təklifləriniz</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formModal">
+                <div class="modal-body" id="body">
+
+                    <div class="form-group">
+                        <div>
+                            <label>Soyad və ad</label><span style="color:red;">*</span>&nbsp;<input name="Name" id="NameM" required class="form-control" />
+                        </div>
+
+                        <div>
+                            <label>Telefon</label><span style="color:red;">*</span>&nbsp;<input type="tel" id="PhoneM" required class="form-control" />
+                        </div>
+                        <div>
+                            <label>E-mail</label>   &nbsp;<input name="Email" id="EmailM" type="email" required class="form-control" />
+                        </div>
+                        <div>
+                            <label>Başlıq</label>   &nbsp;<input id="SubjectM" required class="form-control" />
+                        </div>
+                        <div>
+                            <label>Mətn<span style="font-size:14px">(max:500 simvol)</span></label><span style="color:red;">*</span>
+                            <textarea name="Text" id="MessageM" class="form-control" required></textarea>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
+                    <button type="button" class="btn btn-primary" onclick="SendModal()">Göndər</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-----------------------------------End Modal----------------------------------------------------------->
+
+
+@section scripts{
+    <script>
+        var messagelink = document.getElementById("back-to-top-message");
+        window.addEventListener('scroll', function (e) {
+            messagelink.classList.add('show');
+        });
+    </script>
+    <script src="~/scripts/Message.js"></script>
+    }

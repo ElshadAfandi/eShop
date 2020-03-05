@@ -1,0 +1,152 @@
+﻿
+@{
+    
+    Layout = "~/Views/Shared/_CommerceLayout/_CommerceLayout.cshtml";
+}
+@model eShop.Models.product
+
+@section head{
+    <link href="~/head/cssCustomImage.css" rel="stylesheet" />
+    <link href="~/head/listSize.css" rel="stylesheet" />
+    }
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-6 mb-5 ftco-animate" >
+                <!--Main image-->
+                <div class="col-lg-11 ">
+                    @foreach (var im in Model.Images)
+                    {
+                        <a href="@im.ProductImage" class="image-popup prod-img-bg"><img src="@im.ProductImage" class="img-fluid" alt="Product image"/></a>
+                        break;
+                    }
+                </div>
+                <!--Other images-->
+                <div class="col-lg-11">
+                    <div class="rowImage">
+                        @foreach (var im in Model.Images.Skip(1))
+                        {
+                            <div class="column">
+                                <a href="@im.ProductImage" class="image-popup card-columns"><img src="@im.ProductImage" class="img-thumbnail" alt="Shoes"/></a>
+                            </div>
+                        }                          
+                     </div>
+                </div>  
+                <!-- ./Other images -->                
+            </div>
+
+            <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+                <h3>@Model.ProductName</h3>
+                
+                @if (Model.DiscountedPrice == null || Model.DiscountedPrice == Model.Price)
+                {
+                    <p class="price"><span>@Model.Price.ToString("#.##")<span>&nbsp;AZN</span></span></p>
+                }
+
+                else if (Model.DiscountedPrice != Model.Price || Model.DiscountedPrice != null)
+                {
+                    <p class="price">
+                        <span class="mr-2 price-dc" style="text-decoration: line-through;">@Model.Price.ToString("#.##")&nbsp;AZN</span>
+                        <span class="price-sale">@String.Format("{0:N2}", Model.DiscountedPrice)</span>&nbsp;AZN
+                    </p>
+                }
+                <!--Aciqlama hissesi-->
+                
+
+               <p>
+                    <span style="font-weight:bold;">Açıqlama:</span> <br />_____
+               </p>
+                <p>@Model.Description</p>
+
+                <!--./Aciqlama hissesi-->
+
+                <!--Mehsulun kodu-->
+
+                <p><span style="font-weight:bold;">Məhsul kodu:</span>&nbsp;@Model.ProductCode<br />_____</p>
+
+                <!--./Mehsulun kodu-->
+
+                
+                <!--Olcu-->
+                <p><span style="font-weight:bold;">Ölçünü seçin</span><br />_____</p>
+
+                <div class="row mt-4">                    
+                    <div class="col-md-6">  
+                        <div class="form-group d-flex">
+                            <div class="radio-toolbar" id="test">
+                                
+                                @foreach (var sz in Model.Sizes)
+                                { 
+                                    <input type="radio" name="radios" value="@sz.Size1" class="radios" id="@sz.id" />
+                                    <label for="@sz.id">@sz.Size1</label> <span>&nbsp;</span>     
+                                }
+
+                            </div>
+                        </div>
+                        <!--./Olcu-->
+                    </div>
+                    <div class="w-100"></div>
+                    <!--Say-->
+
+                    @*<div class="input-group col-md-6 d-flex mb-3">
+                        <span class="input-group-btn mr-2">
+                            <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+                                <i class="ion-ios-remove"></i>
+                            </button>
+                        </span>
+                        <input type="text" id="quantity" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+                        <span class="input-group-btn ml-2">
+                            <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+                                <i class="ion-ios-add"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="w-100"></div>
+                    @*<div class="col-md-12">
+                        <p style="color: #000;">80 piece available</p>
+                    </div>*@
+                    <!--./Say-->
+
+                </div>
+                <p>@*<a href="cart.html" class="btn btn-black py-3 px-5 mr-2">Add to Cart</a>*@
+                <a data-id="@Model.id" data-toggle="modal" data-target="#exampleModalProduct" onclick="OrderShow()" class="btn btn-primary py-3 px-5 order">Sifariş et</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!------------------------------------------------ Modal --------------------------------------------------------------------->
+<div class="modal fade" id="exampleModalProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Məlumatları doldurun</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="bodyProduct">
+                .....
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@ <!--Ajax-nan vermek-->
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------------./Modal -------------------------------------------------------------------->
+
+
+
+@section scripts{    
+    <script src="~/scripts/custom/SingleProduct.js"></script>
+    <script src="~/scripts/jquery.fancybox.js"></script>
+    <script src="~/scripts/jquery.fancybox-thumbs.js"></script>
+    <script src="~/scripts/CommerceProduct.js"></script>
+    }
+
+  

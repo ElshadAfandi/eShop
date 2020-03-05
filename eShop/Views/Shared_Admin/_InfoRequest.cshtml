@@ -1,0 +1,10 @@
+﻿@model eShop.App_Classes.infoRequest
+
+@if (Model.Status)
+{
+    <p style="font-weight:bold;">@Model.Info &nbsp; <a href="@Model.Url">@Model.UrlText</a></p>
+}
+else
+{
+    <p style="color:red; font-weight:bold;">@Model.Info &nbsp; <a href="@Model.Url">@Model.UrlText</a></p>
+}

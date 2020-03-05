@@ -1,0 +1,189 @@
+﻿
+@{
+    ViewBag.Title = "Ana səhifə";
+    Layout = "~/Views/Shared/_CommerceLayout/_CommerceLayout.cshtml";
+}
+
+@model List<eShop.Models.product>
+
+    <!--Slide-->
+@*<section class="ftco-section ftco-no-pt ftco-no-pb">
+    <div class="container">
+        <div class="row no-gutters ftco-services">
+            <div class="col-lg-4 text-center d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services p-4 py-md-5">
+                    <div class="icon d-flex justify-content-center align-items-center mb-4">
+                        <span class="flaticon-bag"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Pulsuz çatdırılma</h3>
+                        <p>3-5 günə məhsulunuz ünvana çatdırırıq.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services p-4 py-md-5">
+                    <div class="icon d-flex justify-content-center align-items-center mb-4">
+                        <span class="flaticon-customer-service"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Kömək</h3>
+                        <p>Müştəriyə kömək.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services p-4 py-md-5">
+                    <div class="icon d-flex justify-content-center align-items-center mb-4">
+                        <span class="flaticon-payment-security"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Yerində ödəmə</h3>
+                        <p>Ödəməni məhsulu aldıqda ödənməsi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+    <!--End slide-->
+
+<!--Kateqoriyalar-->
+<section class="ftco-section bg-light"> 
+    <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <h2 class="mb-4">Kateqoriyalar</h2>
+                <!--<p></p>  nese lazim olsa-->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <!-- Foreach -->
+            @foreach (var cat in ViewBag.Category)
+            {
+                <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
+                    <div class="product d-flex flex-column">
+                        <a href="/Home/ProductofCategory/@cat.id" class="img-prod">
+                            
+                            @foreach (var img in cat.Images)
+                            {
+                                <img class="img-fluid" src="@img.CategoryImage" />
+                                <div class="overlay"></div>
+                            }
+                        </a>
+                        <div class="text py-3 pb-4 px-3">
+                            <div class="d-flex">
+                                <div class="cat">
+                                    <span></span>
+                                </div>
+                            </div>
+                            <h3 style="text-align:center;"><a href="/Home/ProductofCategory/@cat.id">@cat.CategoryName</a></h3>
+                        </div> 
+                    </div>
+                </div>
+            }
+            <!-- ./Foreach -->
+        </div>
+    </div>
+</section>
+<!-- ./Kateqoriyalar -->
+
+
+<!-- Mehsullar -->
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <h2 class="mb-4">Yeni ayaqqabılar</h2>
+                @*<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>*@
+            </div>
+        </div>
+    </div>
+    <div class="container" id="products">
+        <div class="row">
+            <!-- Foreach -->
+            @foreach (var pr in Model)
+            {
+                <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
+                    <div class="product d-flex flex-column">
+                        <a href="/Home/SingleProduct/@pr.id" class="img-prod">
+                            @foreach (var img in pr.Images)
+                            {
+                                <img  class="img-fluid" src="@img.ProductImage" alt="@pr.ProductName image"/>
+                                if (pr.Discount != null && pr.Discount > 0)
+                                {
+                                    <span class="status">@pr.Discount <span>%&nbsp;off</span></span>
+                                }
+                                <div class="overlay"></div>
+                                break;
+                            }
+                        </a>
+                        <div class="text py-3 pb-4 px-3">
+                            <h3><a href="/Home/SingleProduct/@pr.id">@pr.ProductName</a></h3>
+                            <div class="pricing">
+                                @if(pr.DiscountedPrice==null || pr.DiscountedPrice==pr.Price)
+                                {
+                                <p class="price"><span>@pr.Price.ToString("#.##")<span>&nbsp;AZN</span></span></p>
+                                }
+                                
+                                else if (pr.DiscountedPrice != 0 || pr.DiscountedPrice != null)
+                                {
+                                    <p class="price">
+                                        <span class="mr-2 price-dc">@pr.Price.ToString("#.##")&nbsp;AZN</span>
+                                        <span class="price-sale">@String.Format("{0:N2}", pr.DiscountedPrice)</span>&nbsp;AZN
+                                    </p>
+                                }
+                            </div>
+                            <p class="bottom-area d-flex px-3">
+                                <a data-id="@pr.id" data-toggle="modal" data-target="#exampleModalProduct" class="buy-now text-center py-2 order">
+                                Sifariş et 
+                                <span><i class="ion-ios-cart ml-1"></i></span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+             
+            <!-- ./Foreach -->      
+        </div>
+        <!--button all product-->
+        <div style="text-align:center;">
+            <a href="/Home/AllProduct"class="btn btn-outline-info">Daha çox</a>
+        </div>  
+        <!--./button all product-->       
+    </div>
+</section>
+
+
+<!-- ./Mehsullar -->
+
+<!------------------------------------------------ Modal --------------------------------------------------------------------->
+<div class="modal fade" id="exampleModalProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Məlumatları doldurun</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="bodyProduct">
+                .....
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@ <!--Ajax-nan vermek-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------------------------- ./Modal ------------------------------------------------------------------>
+
+@section scripts{    
+    <script src="~/scripts/CommerceProduct.js"></script>
+    }

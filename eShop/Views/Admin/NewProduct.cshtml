@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "NewProduct";
+    Layout = "~/Views/Shared_Admin/_AdminLayout.cshtml";
+}
+
+@section head{
+    
+<link href="~/head/spinner.css" rel="stylesheet" />
+    }
+
+@model eShop.Models.product
+
+<h2 class="basliq">Yeni məhsul</h2>
+
+<div id="mesaj"></div>
+
+@using (Ajax.BeginForm("NewProduct","Admin",new AjaxOptions { OnBegin="onbegin()" ,OnComplete="oncomplate()",OnFailure="onfailure()",OnSuccess="onsuccess()",
+    LoadingElementId = "progress", HttpMethod="Post",UpdateTargetId="mesaj"},new { @enctype = "multipart/form-data", @class = "form" }))
+{
+    <div class="form-group row">
+        @Html.LabelFor(m => m.CategoryId, new { @class = "col-12 col-sm-3 col-form-label text-sm-right" })
+        <div class="col-12 col-sm-8 col-lg-6">
+            <select name="CategoryId" class="form-control">
+                <option value="" selected="selected" disabled="disabled">Kateqriyanı seçin</option>
+                @foreach (var ktq in ViewBag.categories)
+                {
+                    <option value="@ktq.id">
+                        @ktq.CategoryName
+                    </option>
+                }
+            </select>
+        
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m=>m.ProductName, new { @class = "col-12 col-sm-3 col-form-label text-sm-right" })
+        <div class="col-12 col-sm-8 col-lg-6">
+            @Html.TextBoxFor(m=>m.ProductName,new { @class="form-control"})
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m=>m.ProductCode, new { @class = "col-12 col-sm-3 col-form-label text-sm-right" })
+        <div class="col-12 col-sm-8 col-lg-6">
+            @Html.TextBoxFor(m=>m.ProductCode,new { @class="form-control"})
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m=>m.Description, new { @class = "col-12 col-sm-3 col-form-label text-sm-right" })
+        <div class="col-12 col-sm-8 col-lg-6">
+            @Html.TextBoxFor(m=>m.Description, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m=>m.Price, new { @class = "col-12 col-sm-3 col-form-label text-sm-right" })
+        <div class="col-12 col-sm-8 col-lg-6">
+            @Html.TextBoxFor(m=>m.Price, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <!-- Burdan asagi hissede size ve image elave etmek ucun -->
+    <!---RESM-->
+    <div class="form-group row" id="newarea">
+        <label class="btn col-12 col-sm-3 col-form-label text-sm-right" onclick="NewCard()" style="font-weight:bold;" >
+            Rəsm
+            <span  style="font-weight:bold;" >+</span>
+        </label>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+             <figure class="card card-figure">
+                <div class="figure">
+                    <div class="figure-img">
+                        <img src="~/Content/Admin/Resm/card/card.png" class="img-fluid btn"/>
+                    </div>
+                    <div class="figure-caption card-subtitle">
+                        <input type="file" name="Images" class="img-fluid" />
+                    </div>
+                </div>
+            </figure>
+        </div>
+    </div>
+    <!---./RESM--->
+    <div class="form-group row">
+        <label class="col-12 col-sm-3 col-form-label text-sm-right"  style="font-weight:bold;">
+            Ölçü
+        </label>
+        <div class="col-12 col-sm-8 col-lg-6 ">
+             <input  type="number" id="NewSizes" min="0" max="80" value="0"/><span class="btn" onclick="NewSizes()" style="font-weight:bold;">+</span>
+            <div class="newSizeArea" id="forclearSize">
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <div class="form-group row">
+        @Html.LabelFor(m=>m.Manufacturer, new { @class = "col-12 col-sm-3 col-form-label text-sm-right" })
+        <div class="col-12 col-sm-8 col-lg-6">
+            @Html.TextBoxFor(m=>m.Manufacturer, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <!--Tesdiq duymesi-->
+    <div class="form-group row text-right">
+        <div id="spinnerDiv"></div>
+        <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0" id="logbtn">
+            <button type="submit" class="btn btn-space btn-primary" data-toggle="modal">Qeyd et</button>
+            <input type="reset" class="btn btn-space btn-warning" value="Təmizlə" onclick="ClearForm()"/>
+            <a href="/Admin/Product/" class="btn btn-space btn-danger">Ləğv et və geri</a>
+        </div>        
+    </div>
+}
+<div id="mesaj"></div>
+    @*<div class="modal fade" tabindex="-1" role="dialog" id="progress">
+        <div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
+            <span class="fa fa-spinner fa-spin fa-3x"></span>
+        </div>
+    </div>*@
+
+
+@section scripts{
+    <script src="~/scripts/ProductScripts.js"></script>
+    }

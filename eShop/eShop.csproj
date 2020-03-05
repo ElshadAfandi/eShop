@@ -1,0 +1,812 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{92C8A582-C6CA-417A-AF8E-D27BAB79526C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eShop</RootNamespace>
+    <AssemblyName>eShop</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.1.2.3\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.1.2.3\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.1.2.3\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.1.2.3\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.1.2.3\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=1.2.3.490, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Admin\dashboard-finance.html" />
+    <Content Include="Content\Admin\dashboard-influencer.html" />
+    <Content Include="Content\Admin\dashboard-sales.html" />
+    <Content Include="Content\Admin\ecommerce-product-checkout.html" />
+    <Content Include="Content\Admin\ecommerce-product-single.html" />
+    <Content Include="Content\Admin\ecommerce-product.html" />
+    <Content Include="Content\Admin\index.html" />
+    <Content Include="Content\Admin\influencer-finder.html" />
+    <Content Include="Content\Admin\influencer-profile.html" />
+    <Content Include="Content\Admin\Resm\card\card.png" />
+    <Content Include="Content\Admin\Resm\card\plus.png" />
+    <Content Include="Content\Admin\Resm\icon\delete.ico" />
+    <Content Include="Content\Admin\Resm\icon\error.ico" />
+    <Content Include="Content\Admin\Resm\icon\formicon.ico" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\e-commerce\logo\lg.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\adressBg.png" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.autoFill.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.autoFill.min.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.colReorder.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.colReorder.min.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.colVis.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.colvis.jqueryui.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.colVis.min.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.fixedColumns.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.fixedColumns.min.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.fixedHeader.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.fixedHeader.min.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.keyTable.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.keyTable.min.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.responsive.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.scroller.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.scroller.min.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.tableTools.css" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.tableTools.min.css" />
+    <Content Include="Content\DataTables-1.10.1\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables-1.10.1\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables-1.10.1\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\AutoFill\css\dataTables.autoFill.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\AutoFill\css\dataTables.autoFill.min.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\AutoFill\images\filler.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\ColReorder\css\dataTables.colReorder.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\ColReorder\css\dataTables.colReorder.min.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\ColReorder\images\insert.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\ColVis\css\dataTables.colVis.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\ColVis\css\dataTables.colvis.jqueryui.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\ColVis\css\dataTables.colVis.min.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\FixedColumns\css\dataTables.fixedColumns.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\FixedColumns\css\dataTables.fixedColumns.min.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\FixedHeader\css\dataTables.fixedHeader.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\FixedHeader\css\dataTables.fixedHeader.min.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\KeyTable\css\dataTables.keyTable.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\KeyTable\css\dataTables.keyTable.min.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\Responsive\css\dataTables.responsive.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\Scroller\css\dataTables.scroller.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\Scroller\css\dataTables.scroller.min.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\Scroller\images\loading-background.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\css\dataTables.tableTools.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\css\dataTables.tableTools.min.css" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\background.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\collection.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\collection_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\copy.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\copy_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\csv.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\csv_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\pdf.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\pdf_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\print.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\print_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\xls.png" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\xls_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\images\background.png" />
+    <Content Include="Content\DataTables-1.10.1\images\back_disabled.png" />
+    <Content Include="Content\DataTables-1.10.1\images\back_enabled.png" />
+    <Content Include="Content\DataTables-1.10.1\images\back_enabled_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\images\collection.png" />
+    <Content Include="Content\DataTables-1.10.1\images\collection_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\images\copy.png" />
+    <Content Include="Content\DataTables-1.10.1\images\copy_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\images\csv.png" />
+    <Content Include="Content\DataTables-1.10.1\images\csv_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\images\filler.png" />
+    <Content Include="Content\DataTables-1.10.1\images\forward_disabled.png" />
+    <Content Include="Content\DataTables-1.10.1\images\forward_enabled.png" />
+    <Content Include="Content\DataTables-1.10.1\images\forward_enabled_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\images\insert.png" />
+    <Content Include="Content\DataTables-1.10.1\images\loading-background.png" />
+    <Content Include="Content\DataTables-1.10.1\images\pdf.png" />
+    <Content Include="Content\DataTables-1.10.1\images\pdf_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\images\print.png" />
+    <Content Include="Content\DataTables-1.10.1\images\print_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\images\sort_asc.png" />
+    <Content Include="Content\DataTables-1.10.1\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables-1.10.1\images\sort_both.png" />
+    <Content Include="Content\DataTables-1.10.1\images\sort_desc.png" />
+    <Content Include="Content\DataTables-1.10.1\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables-1.10.1\images\xls.png" />
+    <Content Include="Content\DataTables-1.10.1\images\xls_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\media\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables-1.10.1\media\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables-1.10.1\media\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables-1.10.1\media\css\jquery.dataTables_themeroller.min.css" />
+    <Content Include="Content\DataTables-1.10.1\media\images\back_disabled.png" />
+    <Content Include="Content\DataTables-1.10.1\media\images\back_enabled.png" />
+    <Content Include="Content\DataTables-1.10.1\media\images\back_enabled_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\media\images\favicon.ico" />
+    <Content Include="Content\DataTables-1.10.1\media\images\forward_disabled.png" />
+    <Content Include="Content\DataTables-1.10.1\media\images\forward_enabled.png" />
+    <Content Include="Content\DataTables-1.10.1\media\images\forward_enabled_hover.png" />
+    <Content Include="Content\DataTables-1.10.1\media\images\sort_asc.png" />
+    <Content Include="Content\DataTables-1.10.1\media\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables-1.10.1\media\images\sort_both.png" />
+    <Content Include="Content\DataTables-1.10.1\media\images\sort_desc.png" />
+    <Content Include="Content\DataTables-1.10.1\media\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables-1.10.1\swf\copy_csv_xls.swf" />
+    <Content Include="Content\DataTables-1.10.1\swf\copy_csv_xls_pdf.swf" />
+    <Content Include="Content\e-commerce\logo\head_icon.ico" />
+    <Content Include="Content\e-commerce\logo\logo.jpg" />
+    <Content Include="Content\e-commerce\minishop\about.html" />
+    <Content Include="Content\e-commerce\minishop\blog-single.html" />
+    <Content Include="Content\e-commerce\minishop\blog.html" />
+    <Content Include="Content\e-commerce\minishop\cart.html" />
+    <Content Include="Content\e-commerce\minishop\checkout.html" />
+    <Content Include="Content\e-commerce\minishop\contact.html" />
+    <Content Include="Content\e-commerce\minishop\css\ajax-loader.gif" />
+    <Content Include="Content\e-commerce\minishop\css\animate.css" />
+    <Content Include="Content\e-commerce\minishop\css\aos.css" />
+    <Content Include="Content\e-commerce\minishop\css\bootstrap-datepicker.css" />
+    <Content Include="Content\e-commerce\minishop\css\bootstrap.min.css" />
+    <Content Include="Content\e-commerce\minishop\css\bootstrap\bootstrap-grid.css" />
+    <Content Include="Content\e-commerce\minishop\css\bootstrap\bootstrap-reboot.css" />
+    <Content Include="Content\e-commerce\minishop\css\css\bootstrap-reboot.css" />
+    <Content Include="Content\e-commerce\minishop\css\css\mixins\_text-hide.css" />
+    <Content Include="Content\e-commerce\minishop\css\flaticon.css" />
+    <Content Include="Content\e-commerce\minishop\css\icomoon.css" />
+    <Content Include="Content\e-commerce\minishop\css\ionicons.min.css" />
+    <Content Include="Content\e-commerce\minishop\css\jquery.timepicker.css" />
+    <Content Include="Content\e-commerce\minishop\css\magnific-popup.css" />
+    <Content Include="Content\e-commerce\minishop\css\open-iconic-bootstrap.min.css" />
+    <Content Include="Content\e-commerce\minishop\css\owl.carousel.min.css" />
+    <Content Include="Content\e-commerce\minishop\css\owl.theme.default.min.css" />
+    <Content Include="Content\e-commerce\minishop\css\style.css" />
+    <Content Include="Content\e-commerce\minishop\fonts\flaticon\backup.txt" />
+    <Content Include="Content\e-commerce\minishop\fonts\flaticon\font\flaticon.css" />
+    <Content Include="Content\e-commerce\minishop\fonts\flaticon\font\flaticon.html" />
+    <Content Include="Content\e-commerce\minishop\fonts\flaticon\font\Flaticon.svg" />
+    <Content Include="Content\e-commerce\minishop\fonts\icomoon\icomoon.svg" />
+    <Content Include="Content\e-commerce\minishop\fonts\ionicons\css\ionicons.min.css" />
+    <Content Include="Content\e-commerce\minishop\fonts\ionicons\fonts\ionicons.svg" />
+    <Content Include="Content\e-commerce\minishop\fonts\open-iconic\open-iconic.svg" />
+    <Content Include="Content\e-commerce\minishop\icon\favicon.ico" />
+    <Content Include="Content\e-commerce\minishop\icon\ms.gif" />
+    <Content Include="Content\e-commerce\minishop\icon\wp.gif" />
+    <Content Include="Content\e-commerce\minishop\icon\wp.ico" />
+    <Content Include="Content\e-commerce\minishop\images\about.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\bg_1.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\bg_1.png" />
+    <Content Include="Content\e-commerce\minishop\images\bg_2.png" />
+    <Content Include="Content\e-commerce\minishop\images\bg_6.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\mailBg.png" />
+    <Content Include="Content\e-commerce\minishop\images\snBg.png" />
+    <Content Include="Content\e-commerce\minishop\image\BgImage\bg_own.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\choose-1.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\choose-2.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\choose-3.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\fbBg.png" />
+    <Content Include="Content\e-commerce\minishop\images\ftBg.png" />
+    <Content Include="Content\e-commerce\minishop\images\gallery-1.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\gallery-2.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\gallery-3.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\gallery-4.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\gallery-5.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\gallery-6.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\gmBg.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\image_1.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\image_2.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\image_3.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\image_5.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\image_6.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\insBg.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\person_1.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\person_2.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\person_3.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\person_4.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\phBg.png" />
+    <Content Include="Content\e-commerce\minishop\images\prod-1.png" />
+    <Content Include="Content\e-commerce\minishop\images\prod-2.png" />
+    <Content Include="Content\e-commerce\minishop\images\product-1.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\product-1.png" />
+    <Content Include="Content\e-commerce\minishop\images\product-2.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\product-2.png" />
+    <Content Include="Content\e-commerce\minishop\images\product-3.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\product-3.png" />
+    <Content Include="Content\e-commerce\minishop\images\product-4.jpg" />
+    <Content Include="Content\e-commerce\minishop\images\product-4.png" />
+    <Content Include="Content\e-commerce\minishop\images\product-5.png" />
+    <Content Include="Content\e-commerce\minishop\images\product-6.png" />
+    <Content Include="Content\e-commerce\minishop\images\product-7.png" />
+    <Content Include="Content\e-commerce\minishop\images\product-8.png" />
+    <Content Include="Content\e-commerce\minishop\images\product-9.png" />
+    <Content Include="Content\e-commerce\minishop\images\swpBg.jpg" />
+    <Content Include="Content\e-commerce\minishop\index.html" />
+    <Content Include="Content\e-commerce\minishop\js\aos.js" />
+    <Content Include="Content\e-commerce\minishop\js\bootstrap-datepicker.js" />
+    <Content Include="Content\e-commerce\minishop\js\bootstrap.min.js" />
+    <Content Include="Content\e-commerce\minishop\js\google-map.js" />
+    <Content Include="Content\e-commerce\minishop\js\jquery-3.2.1.min.js" />
+    <Content Include="Content\e-commerce\minishop\js\jquery-migrate-3.0.1.min.js" />
+    <Content Include="Content\e-commerce\minishop\js\jquery.animateNumber.min.js" />
+    <Content Include="Content\e-commerce\minishop\js\jquery.easing.1.3.js" />
+    <Content Include="Content\e-commerce\minishop\js\jquery.magnific-popup.min.js" />
+    <Content Include="Content\e-commerce\minishop\js\jquery.min.js" />
+    <Content Include="Content\e-commerce\minishop\js\jquery.stellar.min.js" />
+    <Content Include="Content\e-commerce\minishop\js\jquery.waypoints.min.js" />
+    <Content Include="Content\e-commerce\minishop\js\main.js" />
+    <Content Include="Content\e-commerce\minishop\js\owl.carousel.min.js" />
+    <Content Include="Content\e-commerce\minishop\js\popper.min.js" />
+    <Content Include="Content\e-commerce\minishop\js\range.js" />
+    <Content Include="Content\e-commerce\minishop\js\scrollax.min.js" />
+    <Content Include="Content\e-commerce\minishop\product-single.html" />
+    <Content Include="Content\e-commerce\minishop\shop.html" />
+    <Content Include="Content\e-commerce\slide_image\h4-slide.png" />
+    <Content Include="Content\e-commerce\slide_image\h4-slide2.png" />
+    <Content Include="Content\e-commerce\slide_image\h4-slide3.png" />
+    <Content Include="Content\e-commerce\slide_image\h4-slide4.png" />
+    <Content Include="Content\e-commerce\slide_image\h4-slide7.png" />
+    <Content Include="Content\fancybox\blank.gif" />
+    <Content Include="Content\fancybox\fancybox_buttons.png" />
+    <Content Include="Content\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="Content\fancybox\fancybox_loading.gif" />
+    <Content Include="Content\fancybox\fancybox_overlay.png" />
+    <Content Include="Content\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="Content\fancybox\fancybox_sprite.png" />
+    <Content Include="Content\jquery.fancybox-buttons.css" />
+    <Content Include="Content\jquery.fancybox-thumbs.css" />
+    <Content Include="Content\jquery.fancybox.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Global.asax" />
+    <Content Include="head\cssCustomImage.css" />
+    <Content Include="head\eMailsettingtable.css" />
+    <Content Include="head\listSize.css" />
+    <Content Include="head\spinner.css" />
+    <Content Include="head\spinnerEcommerce.css" />
+    <Content Include="head\style.css" />
+    <Content Include="scripts\AdminIndex.js" />
+    <Content Include="scripts\AdminMessagePage.js" />
+    <Content Include="scripts\ai.0.15.0-build58334.js" />
+    <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\bootbox.js" />
+    <Content Include="scripts\bootbox.min.js" />
+    <Content Include="scripts\bootstrap.bundle.js" />
+    <Content Include="scripts\bootstrap.bundle.min.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\CategoryScripts.js" />
+    <Content Include="scripts\CommerceProduct.js" />
+    <Content Include="scripts\custom.js" />
+    <Content Include="scripts\custom\custom.js" />
+    <Content Include="scripts\custom\SingleProduct.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.autoFill.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.autoFill.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.bootstrap.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.colReorder.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.colReorder.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.colVis.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.colVis.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.fixedColumns.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.fixedColumns.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.fixedHeader.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.fixedHeader.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.foundation.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.jqueryui.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.keyTable.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.keyTable.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.responsive.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.responsive.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.scroller.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.scroller.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.tableTools.js" />
+    <Content Include="scripts\DataTables-1.10.1\dataTables.tableTools.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\AutoFill\js\dataTables.autoFill.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\AutoFill\js\dataTables.autoFill.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\AutoFill\Readme.txt" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\ColReorder\js\dataTables.colReorder.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\ColReorder\js\dataTables.colReorder.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\ColReorder\Readme.txt" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\ColVis\js\dataTables.colVis.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\ColVis\js\dataTables.colVis.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\ColVis\Readme.txt" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\FixedColumns\js\dataTables.fixedColumns.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\FixedColumns\js\dataTables.fixedColumns.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\FixedColumns\Readme.txt" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\FixedHeader\js\dataTables.fixedHeader.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\FixedHeader\js\dataTables.fixedHeader.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\FixedHeader\Readme.txt" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\KeyTable\js\dataTables.keyTable.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\KeyTable\js\dataTables.keyTable.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\KeyTable\Readme.txt" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\Responsive\js\dataTables.responsive.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\Responsive\js\dataTables.responsive.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\Scroller\js\dataTables.scroller.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\Scroller\js\dataTables.scroller.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\Scroller\Readme.txt" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\TableTools\js\dataTables.tableTools.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\TableTools\js\dataTables.tableTools.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\TableTools\Readme.txt" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\TableTools\swf\copy_csv_xls.swf" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\TableTools\swf\copy_csv_xls_pdf.swf" />
+    <Content Include="scripts\DataTables-1.10.1\jquery.dataTables.js" />
+    <Content Include="scripts\DataTables-1.10.1\jquery.dataTables.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\media\js\jquery.dataTables.js" />
+    <Content Include="scripts\DataTables-1.10.1\media\js\jquery.dataTables.min.js" />
+    <Content Include="scripts\DataTables-1.10.1\media\js\jquery.js" />
+    <Content Include="scripts\esm\popper-utils.js" />
+    <Content Include="scripts\esm\popper-utils.min.js" />
+    <Content Include="scripts\esm\popper.js" />
+    <Content Include="scripts\esm\popper.min.js" />
+    <Content Include="scripts\esm\popper.min.js.map" />
+    <Content Include="scripts\esm\popper.js.map" />
+    <Content Include="scripts\esm\popper-utils.min.js.map" />
+    <Content Include="scripts\esm\popper-utils.js.map" />
+    <Content Include="scripts\bootstrap.min.js.map" />
+    <Content Include="scripts\bootstrap.js.map" />
+    <Content Include="scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="scripts\DataTables-1.10.1\extensions\Responsive\Readme.md" />
+    <Content Include="Content\DataTables-1.10.1\media\images\Sorting icons.psd" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\psd\printer.psd" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\psd\file_types.psd" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\psd\copy document.psd" />
+    <Content Include="Content\DataTables-1.10.1\extensions\TableTools\images\psd\collection.psd" />
+    <Content Include="Content\DataTables-1.10.1\extensions\Responsive\css\dataTables.responsive.scss" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.responsive.scss" />
+    <Content Include="Content\DataTables-1.10.1\css\dataTables.jqueryui.scss" />
+    <Content Include="Content\e-commerce\minishop\fonts\ionicons\css\_ionicons.scss" />
+    <Content Include="Content\e-commerce\minishop\fonts\ionicons\fonts\.DS_Store" />
+    <Content Include="Content\e-commerce\minishop\fonts\ionicons\fonts\ionicons.eot" />
+    <Content Include="Content\e-commerce\minishop\fonts\ionicons\fonts\ionicons.ttf" />
+    <Content Include="Content\e-commerce\minishop\fonts\ionicons\fonts\ionicons.woff" />
+    <Content Include="Content\e-commerce\minishop\fonts\ionicons\fonts\ionicons.woff2" />
+    <Content Include="Content\e-commerce\minishop\fonts\flaticon\.DS_Store" />
+    <Content Include="Content\e-commerce\minishop\fonts\flaticon\font\Flaticon.eot" />
+    <Content Include="Content\e-commerce\minishop\fonts\flaticon\font\Flaticon.ttf" />
+    <Content Include="Content\e-commerce\minishop\fonts\flaticon\font\Flaticon.woff" />
+    <Content Include="Content\e-commerce\minishop\fonts\flaticon\font\Flaticon.woff2" />
+    <Content Include="Content\e-commerce\minishop\fonts\flaticon\font\_flaticon.scss" />
+    <Content Include="Content\e-commerce\minishop\fonts\flaticon\license\license.pdf" />
+    <Content Include="Content\e-commerce\minishop\fonts\icomoon\icomoon.eot" />
+    <Content Include="Content\e-commerce\minishop\fonts\icomoon\icomoon.ttf" />
+    <Content Include="Content\e-commerce\minishop\fonts\icomoon\icomoon.woff" />
+    <Content Include="Content\e-commerce\minishop\fonts\open-iconic\open-iconic.eot" />
+    <Content Include="Content\e-commerce\minishop\fonts\open-iconic\open-iconic.otf" />
+    <Content Include="Content\e-commerce\minishop\fonts\open-iconic\open-iconic.ttf" />
+    <Content Include="Content\e-commerce\minishop\fonts\open-iconic\open-iconic.woff" />
+    <None Include="scripts\jquery-3.0.0-vsdoc.js" />
+    <Content Include="scripts\jquery-3.0.0.js" />
+    <Content Include="scripts\jquery-3.0.0.min.js" />
+    <Content Include="scripts\jquery-3.0.0.slim.js" />
+    <Content Include="scripts\jquery-3.0.0.slim.min.js" />
+    <Content Include="scripts\jquery.fancybox-buttons.js" />
+    <Content Include="scripts\jquery.fancybox-media.js" />
+    <Content Include="scripts\jquery.fancybox-thumbs.js" />
+    <Content Include="scripts\jquery.fancybox.js" />
+    <Content Include="scripts\jquery.fancybox.pack.js" />
+    <Content Include="scripts\jquery.mousewheel-3.0.6.pack.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="scripts\Message.js" />
+    <Content Include="scripts\order.js" />
+    <Content Include="scripts\popper-utils.js" />
+    <Content Include="scripts\popper-utils.min.js" />
+    <Content Include="scripts\popper.js" />
+    <Content Include="scripts\popper.min.js" />
+    <Content Include="scripts\ProductScripts.js" />
+    <Content Include="scripts\umd\popper-utils.js" />
+    <Content Include="scripts\umd\popper-utils.min.js" />
+    <Content Include="scripts\umd\popper.js" />
+    <Content Include="scripts\umd\popper.min.js" />
+    <Content Include="scripts\Users.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Classes\EmailSettings.cs" />
+    <Compile Include="App_Classes\ForEditProduct.cs" />
+    <Compile Include="App_Classes\infoRequest.cs" />
+    <Compile Include="App_Classes\listItem.cs" />
+    <Compile Include="App_Classes\ModalOrderList.cs" />
+    <Compile Include="App_Classes\NewUser.cs" />
+    <Compile Include="App_Classes\RemoveImg.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Applications.cs" />
+    <Compile Include="Models\aspnet_Membership.cs" />
+    <Compile Include="Models\aspnet_Paths.cs" />
+    <Compile Include="Models\aspnet_PersonalizationAllUsers.cs" />
+    <Compile Include="Models\aspnet_PersonalizationPerUser.cs" />
+    <Compile Include="Models\aspnet_Profile.cs" />
+    <Compile Include="Models\aspnet_Roles.cs" />
+    <Compile Include="Models\aspnet_SchemaVersions.cs" />
+    <Compile Include="Models\aspnet_Users.cs" />
+    <Compile Include="Models\aspnet_WebEvent_Events.cs" />
+    <Compile Include="Models\category.cs" />
+    <Compile Include="Models\EmailSetting.cs" />
+    <Compile Include="Models\eShopContext.cs" />
+    <Compile Include="Models\General.cs" />
+    <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\Mapping\aspnet_ApplicationsMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_MembershipMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_PathsMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_PersonalizationAllUsersMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_PersonalizationPerUserMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_ProfileMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_RolesMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_SchemaVersionsMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_UsersMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_WebEvent_EventsMap.cs" />
+    <Compile Include="Models\Mapping\categoryMap.cs" />
+    <Compile Include="Models\Mapping\EmailSettingMap.cs" />
+    <Compile Include="Models\Mapping\GeneralMap.cs" />
+    <Compile Include="Models\Mapping\ImageMap.cs" />
+    <Compile Include="Models\Mapping\MessageMap.cs" />
+    <Compile Include="Models\Mapping\OrderMap.cs" />
+    <Compile Include="Models\Mapping\productMap.cs" />
+    <Compile Include="Models\Mapping\SizeMap.cs" />
+    <Compile Include="Models\Mapping\sysdiagramMap.cs" />
+    <Compile Include="Models\Mapping\UserMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_ApplicationsMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_MembershipUsersMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_ProfilesMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_RolesMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_UsersInRolesMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_UsersMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_WebPartState_PathsMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_WebPartState_SharedMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_WebPartState_UserMap.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\product.cs" />
+    <Compile Include="Models\Size.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\vw_aspnet_Applications.cs" />
+    <Compile Include="Models\vw_aspnet_MembershipUsers.cs" />
+    <Compile Include="Models\vw_aspnet_Profiles.cs" />
+    <Compile Include="Models\vw_aspnet_Roles.cs" />
+    <Compile Include="Models\vw_aspnet_Users.cs" />
+    <Compile Include="Models\vw_aspnet_UsersInRoles.cs" />
+    <Compile Include="Models\vw_aspnet_WebPartState_Paths.cs" />
+    <Compile Include="Models\vw_aspnet_WebPartState_Shared.cs" />
+    <Compile Include="Models\vw_aspnet_WebPartState_User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\e-commerce\minishop\.DS_Store" />
+    <Content Include="Content\e-commerce\minishop\prepros-6.config" />
+    <Content Include="Content\e-commerce\minishop\css\.DS_Store" />
+    <Content Include="Content\e-commerce\minishop\css\bootstrap\.DS_Store" />
+    <Content Include="Content\e-commerce\minishop\css\css\.DS_Store" />
+    <Content Include="Content\e-commerce\minishop\css\css\mixins\.DS_Store" />
+    <Content Include="Content\e-commerce\minishop\fonts\.DS_Store" />
+    <Content Include="Content\e-commerce\minishop\images\.DS_Store" />
+    <Content Include="Content\e-commerce\minishop\js\.DS_Store" />
+    <Content Include="Content\e-commerce\minishop\scss\.DS_Store" />
+    <Content Include="Content\e-commerce\minishop\scss\style.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\.DS_Store" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\bootstrap-grid.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\bootstrap-reboot.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\bootstrap.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_alert.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_badge.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_breadcrumb.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_button-group.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_buttons.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_card.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_carousel.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_close.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_code.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_custom-forms.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_dropdown.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_forms.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_functions.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_grid.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_images.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_input-group.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_jumbotron.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_list-group.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_media.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_mixins.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_modal.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_nav.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_navbar.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_pagination.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_popover.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_print.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_progress.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_reboot.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_root.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_spinners.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_tables.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_toasts.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_tooltip.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_transitions.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_type.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_utilities.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\_variables.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_alert.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_badge.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_box-shadow.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_breakpoints.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_buttons.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_caret.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_deprecate.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_float.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_forms.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_gradients.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_grid.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_hover.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_image.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_list-group.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_lists.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_pagination.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_resize.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_screen-reader.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_size.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_table-row.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_text-hide.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_text-truncate.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_transition.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\mixins\_visibility.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_align.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_background.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_borders.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_clearfix.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_display.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_embed.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_flex.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_float.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_overflow.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_position.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_screenreaders.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_shadows.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_sizing.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_spacing.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_stretched-link.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_text.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\utilities\_visibility.scss" />
+    <Content Include="Content\e-commerce\minishop\scss\bootstrap\vendor\_rfs.scss" />
+    <Content Include="Views\Shared\_CommerceLayout\_CommerceLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="scripts\jquery-3.0.0.slim.min.map" />
+    <Content Include="scripts\jquery-3.0.0.min.map" />
+    <Content Include="scripts\umd\popper.min.js.map" />
+    <Content Include="scripts\umd\popper.js.map" />
+    <Content Include="scripts\umd\popper-utils.min.js.map" />
+    <Content Include="scripts\umd\popper-utils.js.map" />
+    <Content Include="scripts\README.md" />
+    <Content Include="scripts\popper.min.js.map" />
+    <Content Include="scripts\popper.js.map" />
+    <Content Include="scripts\popper-utils.min.js.map" />
+    <Content Include="scripts\popper-utils.js.map" />
+    <Content Include="Views\Home\SingleProduct.cshtml" />
+    <Content Include="Views\Home\AllProduct.cshtml" />
+    <Content Include="Views\Shared_Admin\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Category.cshtml" />
+    <Content Include="Views\Home\ProductofCategory.cshtml" />
+    <Content Include="Views\Shared\EditTable\TableCategory.cshtml" />
+    <Content Include="Views\Admin\Product.cshtml" />
+    <Content Include="Views\Admin\NewProduct.cshtml" />
+    <Content Include="Views\Shared_Admin\_InfoRequest.cshtml" />
+    <Content Include="Views\Shared\EditTable\TableOrderModal.cshtml" />
+    <Content Include="Views\Shared\EditTable\TableProduct.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Admin\Order.cshtml" />
+    <Content Include="Views\Shared\EditTable\TableOrder.cshtml" />
+    <Content Include="Views\Security\Login.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Shared\EditTable\TableUsers.cshtml" />
+    <Content Include="Views\Admin\Message.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\Admin\assets\" />
+    <Folder Include="Content\Admin\documentation\" />
+    <Folder Include="Content\Admin\pages\" />
+    <Folder Include="Content\e-commerce\minishop\image\category\" />
+    <Folder Include="Content\e-commerce\minishop\image\product\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58949</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58949/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

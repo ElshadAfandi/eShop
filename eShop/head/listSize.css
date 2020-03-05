@@ -1,0 +1,29 @@
+﻿/*.ulSize{
+    list-style:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+}
+.ulSize li{
+    float:left;
+    padding: 10px 10px 10px 0;
+}*/
+
+.radio-toolbar input[type="radio"] {
+  display: none;
+}
+
+.radio-toolbar label {
+  display: inline-block;
+  background-color: #ddd;
+  border-radius:50%;
+  padding: 4px 11px; 
+  font-family: Arial;
+  font-size: 16px;
+  cursor: pointer;
+}
+    
+.radio-toolbar input[type="radio"]:checked+label {
+  background-color: black;
+}
+

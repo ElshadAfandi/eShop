@@ -1,0 +1,20 @@
+﻿.basliq{
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    font-family:Arial;
+}
+.basliq.close{
+    padding: 1rem 1rem;
+        margin: -1rem -1rem -1rem auto;
+        font-family:Arial;
+}

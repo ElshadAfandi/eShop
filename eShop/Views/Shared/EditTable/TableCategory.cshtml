@@ -1,0 +1,38 @@
+﻿
+@model List<eShop.Models.category>
+
+@foreach (var category in Model)
+{
+
+    <tr>
+        <td>@category.CategoryName</td>
+        <td>
+            @if (category.description.Count() == 0 || category.description==" ")
+            {
+                <span data-toggle="tooltip" data-placement="bottom" data-original-title="Açıqlama yoxdur">
+                    <img src="~/Content/Admin/Resm/icon/error.ico" />
+                </span>
+            }
+            else
+            {
+                @category.description
+            }
+        </td>
+        <td>
+            @foreach (var img in category.Images)
+            {
+                <a class="btn" data-target="#exampleModalProduct" data-toggle="modal" data-id="@img.id" id="imgUpdate">
+                    <i class="m-r-10 mdi mdi-autorenew" data-toggle="tooltip" data-placement="right" title="Şəkli yenilə"></i>
+                </a>
+                            <a data-fancybox="gallary" href="@img.CategoryImage"><img src="@img.CategoryImage" style="width:50px;height:50px;" /></a>
+            }
+        </td>
+
+
+
+        <td><a data-id="@category.id" class="btn btn-success btnEdit" data-target="#exampleModalProduct" data-toggle="modal">Edit</a></td>
+        <td><a data-id="@category.id" class="btn btn-danger btnCatDelete">Delete</a></td>
+    </tr>
+}
+
+

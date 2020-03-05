@@ -1,0 +1,68 @@
+﻿
+@model  List<eShop.Models.product>
+
+   
+    @foreach (var pr in Model)
+            {
+        <tr>
+            <td>@pr.category.CategoryName</td>
+            <td>@pr.ProductName</td>
+            <td>@pr.ProductCode</td>
+            <td>@pr.Manufacturer</td>
+            <td>
+                <a data-id="@pr.id" class="btn btn-secondary description" data-toggle="modal" data-target="#exampleModalProduct">Açıqlama</a>
+            </td>
+            <td>
+                <div>
+                    <a class="btn" data-id="@pr.id" id="editImage" data-target="#exampleModalProduct" data-toggle="modal">
+                        <i class="fas fa-camera-retro"></i>
+                    </a>
+                </div>
+            </td>
+            <td>
+                <button class="btn btn-success SizeButton" data-id="@pr.id" data-toggle="modal" data-target="#exampleModalProduct">
+                    Ölçülərə bax
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-success OrderButton" data-id="@pr.id" data-toggle="modal" data-target="#exampleModalProduct">
+                    Sifarişlərə bax
+                </button>
+            </td>
+            <td>@pr.Price.ToString("#.##")<span>&nbsp; AZN</span></td>
+
+            <td>
+                @if (pr.Discount != null)
+                {
+                    <span>@pr.Discount</span><span>%</span>
+                            <a class="btn" id="discount" data-id="@pr.id" data-toggle="modal" data-target="#exampleModalProduct"><i class="fas fa-edit"></i></a>
+                }
+                else
+                {
+                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Endirim yoxdur">
+                        <img src="~/Content/Admin/Resm/icon/error.ico" />
+                    </span><a class="btn" id="discount" data-id="@pr.id" data-toggle="modal" data-target="#exampleModalProduct"><i class="fas fa-edit"></i></a>
+                }
+            </td>
+            <td>
+                @if (pr.DiscountedPrice != null)
+                {
+                    <span>@String.Format("{0:N2}", pr.DiscountedPrice)</span><span>&nbsp; AZN</span>
+
+                }
+                else
+                {
+                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Yoxdur">
+                        <img src="~/Content/Admin/Resm/icon/error.ico" />
+                    </span>
+                }
+            </td>
+            <td>@pr.CreatedDate</td>
+            <td><a class="btn btn-success btnEditProduct" data-id="@pr.id" data-toggle="modal" data-target="#exampleModalProduct">Edit</a></td>
+            <td><a class="btn btn-danger btnDeleteProduct" data-id="@pr.id">Delete</a></td>
+        </tr>
+    }
+
+
+
+
